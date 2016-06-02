@@ -1,4 +1,6 @@
-var colors = generateRandomColor(6);
+var num = 6;
+
+var colors = generateRandomColor(num);
 
 var squares = document.querySelectorAll(".square");
 
@@ -8,6 +10,37 @@ colordisplay.textContent = pickedcolor;
 var message = document.querySelector('#message');
 var resetbutton = document.querySelector('#reset');
 var h1 = document.querySelector('h1');
+var easy = document.querySelector('#easy');
+var hard = document.querySelector('#hard');
+
+easy.addEventListener('click', function(){
+	easy.classList.add('selected');
+	hard.classList.remove('selected');
+	num = 3;
+	colors = generateRandomColor(num);
+	pickedcolor = pickColor();
+	colordisplay.textContent = pickedcolor;
+	for(var i =0;i < squares.length; i++){
+		if(colors[i]){
+			squares[i].style.background = colors[i];
+		}else{
+			squares[i].style.display = "none";
+		}
+	}
+});
+
+hard.addEventListener('click', function(){
+	hard.classList.add('selected');
+	easy.classList.remove('selected');
+	num = 6;
+	colors = generateRandomColor(num);
+	pickedcolor = pickColor();
+	colordisplay.textContent = pickedcolor;
+	for(var i =0;i < squares.length; i++){
+			squares[i].style.background = colors[i];
+			squares[i].style.display = "block";
+	}
+});
 
 resetbutton.addEventListener('click',function(){
 colors = generateRandomColor(6);
